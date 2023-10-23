@@ -1,5 +1,12 @@
 //! Smart Pointers
 //!
+//! From page 350:
+//!  * The Box<T> type has a known size and points to data allocated on the heap.
+//!  * The Rc<T> type keeps track of the number of ref's to data on the heap so that
+//!    data can hav multiple owners.
+//!  * The RefCell<T> type with its interior mutability gives us a type that we can use
+//!    when we need an immutable type but need to change an inner value of that type; it
+//!    also enforces the borrowing rules at runtime instead of at compile time.
 //! From page 334: Here is a recap of the reasons to choose Box<T>, Rc<T>, or RefCell<T>
 //!  * Rc<T> enables multiple owners of the same data; Box<T> and RefCell<T> have
 //!    single owners.
