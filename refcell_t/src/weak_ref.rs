@@ -40,7 +40,7 @@ pub fn tree() {
     });
 
     println!(
-        "leaf strong = {}, weak = {}",
+        "\nleaf strong = {}, weak = {}",
         Rc::strong_count(&leaf),
         Rc::weak_count(&leaf)
     );
