@@ -18,6 +18,7 @@
 
 pub mod cons;
 pub mod list;
+pub mod weak_ref;
 
 pub fn refcell_t() {
     println!("\nRefCell<T>\n");

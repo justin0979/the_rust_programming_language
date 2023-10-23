@@ -38,5 +38,5 @@ pub fn reference_cycle() {
 
     // Uncomment the next line to see taht we have a cycle;
     // it will overflow the stack.
-    println!("a next item = {:?}", a.tail());
+    // println!("a next item = {:?}", a.tail());
 }
