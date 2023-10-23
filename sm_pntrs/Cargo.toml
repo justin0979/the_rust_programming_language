@@ -1,0 +1,11 @@
+[package]
+name = "sm_pntrs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+box_t = { path = "../box_t" }
+rc_t = { path = "../rc_t" }
+refcell_t = { path = "../refcell_t" }

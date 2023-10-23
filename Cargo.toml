@@ -1,0 +1,7 @@
+[workspace]
+members = [
+  "sm_pntrs",
+  "box_t",
+  "rc_t",
+  "refcell_t"
+]
