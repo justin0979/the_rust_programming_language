@@ -39,18 +39,41 @@ pub fn tree() {
         children: RefCell::new(vec![]),
     });
 
-    println!("\nleaf parent = {:?}", leaf.parent.borrow().upgrade());
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
 
-    let branch = Rc::new(Node {
-        value: 5,
-        parent: RefCell::new(Weak::new()),
-        // Create a branch node with a leaf as one of its children.
-        // We clone the Rc<Node> in `leaf` and store that in `branch`, meaning the
-        // `Node` in `leaf` now has two owners: `leaf` and `branch`.
-        children: RefCell::new(vec![Rc::clone(&leaf)]),
-    });
+    {
+        let branch = Rc::new(Node {
+            value: 5,
+            parent: RefCell::new(Weak::new()),
+            // Create a branch node with a leaf as one of its children.
+            // We clone the Rc<Node> in `leaf` and store that in `branch`, meaning the
+            // `Node` in `leaf` now has two owners: `leaf` and `branch`.
+            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        });
 
-    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
 
+        println!(
+            "branch strong = {}, weak = {}",
+            Rc::strong_count(&branch),
+            Rc::weak_count(&branch)
+        );
+
+        println!(
+            "leaf strong = {}, weak = {}",
+            Rc::strong_count(&leaf),
+            Rc::weak_count(&leaf)
+        );
+    }
     println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+
+    println!(
+        "leaf strong = {}, weak = {}",
+        Rc::strong_count(&leaf),
+        Rc::weak_count(&leaf)
+    );
 }
