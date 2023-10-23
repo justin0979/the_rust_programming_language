@@ -17,6 +17,7 @@
 //! break these rules, your program will panic and exit.
 
 pub mod cons;
+pub mod list;
 
 pub fn refcell_t() {
     println!("\nRefCell<T>\n");
