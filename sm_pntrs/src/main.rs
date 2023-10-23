@@ -27,4 +27,5 @@ fn main() {
     rc_t::cons_list_counting();
 
     refcell_t::refcell_t();
+    refcell_t::cons::cons_list();
 }

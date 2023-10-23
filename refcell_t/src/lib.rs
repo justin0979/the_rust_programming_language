@@ -16,6 +16,8 @@
 //! With RefCell<T>, these invariants are enforced at runtime. With RefCell<T>, if you
 //! break these rules, your program will panic and exit.
 
+pub mod cons;
+
 pub fn refcell_t() {
     println!("\nRefCell<T>\n");
 }
