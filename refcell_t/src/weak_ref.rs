@@ -14,11 +14,15 @@
 //!   - get `None` if it has been dropped.
 
 use std::cell::RefCell;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
 struct Node {
     value: i32,
+    /// Dropping parent will drop the child, but if a child is dropped, it has no
+    /// effect on the parent due to the Weak<T> type. The child can now refer to
+    /// the parent but does not own the parent.
+    parent: RefCell<Weak<Node>>,
     /// We want node to own its children, and we want to share that ownership with
     /// vars so we can access each Node in the tree directly. We do this by defining
     /// Vec<T> items to be values of type Rc<Node>.
@@ -30,15 +34,23 @@ struct Node {
 pub fn tree() {
     let leaf = Rc::new(Node {
         value: 3,
+        parent: RefCell::new(Weak::new()),
         // create a leaf node with no children
         children: RefCell::new(vec![]),
     });
 
+    println!("\nleaf parent = {:?}", leaf.parent.borrow().upgrade());
+
     let branch = Rc::new(Node {
         value: 5,
+        parent: RefCell::new(Weak::new()),
         // Create a branch node with a leaf as one of its children.
         // We clone the Rc<Node> in `leaf` and store that in `branch`, meaning the
         // `Node` in `leaf` now has two owners: `leaf` and `branch`.
         children: RefCell::new(vec![Rc::clone(&leaf)]),
     });
+
+    *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+
+    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
 }

@@ -29,4 +29,5 @@ fn main() {
     refcell_t::refcell_t();
     refcell_t::cons::cons_list();
     refcell_t::list::reference_cycle();
+    refcell_t::weak_ref::tree();
 }
