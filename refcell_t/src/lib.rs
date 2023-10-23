@@ -61,6 +61,8 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
+    // Using RefCell<T> to mutate an inner value while the outer value is considered
+    // immutable
     use std::cell::RefCell;
 
     struct MockMessenger {
