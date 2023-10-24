@@ -9,5 +9,6 @@ fn main() {
     // channels::channels();
     // channels::send_multiple_messages_and_see_receiver_waiting();
     // channels::multiple_producers_single_consumer();
-    shared_state::mutex::single_threaded_mutex_example();
+    // shared_state::mutex::single_threaded_mutex_example();
+    shared_state::mutex::multi_thread_mutex();
 }
