@@ -35,3 +35,13 @@ pub fn finish_all_threads_w_join() {
 
     handle.join().unwrap();
 }
+
+pub fn move_closures_with_threads() {
+    let v = vec![1, 2, 3];
+
+    let handle = thread::spawn(move || {
+        println!("Here's a vector: {:?}", v);
+    });
+
+    handle.join().unwrap();
+}
